@@ -10,6 +10,7 @@ class FolderSync
         {
             writer.WriteLine($"[{DateTime.Now}] {message}");
         }
+        Console.WriteLine(time);
     }
     static void Main(string[] args) 
     {
