@@ -5,6 +5,7 @@ class FolderSync
 {
     static void LogMessage(string logPath, string message)
     {
+        string time = $"[{DateTime.Now}] {message}";
         using (StreamWriter writer = new StreamWriter(logPath, append: true))
         {
             writer.WriteLine($"[{DateTime.Now}] {message}");
