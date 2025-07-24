@@ -1,0 +1,15 @@
+E:\Users\David\source\repos\Veeam-Test-Task\bin\Debug\net8.0\Veeam-Test-Task.exe
+E:\Users\David\source\repos\Veeam-Test-Task\bin\Debug\net8.0\Veeam-Test-Task.deps.json
+E:\Users\David\source\repos\Veeam-Test-Task\bin\Debug\net8.0\Veeam-Test-Task.runtimeconfig.json
+E:\Users\David\source\repos\Veeam-Test-Task\bin\Debug\net8.0\Veeam-Test-Task.dll
+E:\Users\David\source\repos\Veeam-Test-Task\bin\Debug\net8.0\Veeam-Test-Task.pdb
+E:\Users\David\source\repos\Veeam-Test-Task\obj\Debug\net8.0\Veeam-Test-Task.GeneratedMSBuildEditorConfig.editorconfig
+E:\Users\David\source\repos\Veeam-Test-Task\obj\Debug\net8.0\Veeam-Test-Task.AssemblyInfoInputs.cache
+E:\Users\David\source\repos\Veeam-Test-Task\obj\Debug\net8.0\Veeam-Test-Task.AssemblyInfo.cs
+E:\Users\David\source\repos\Veeam-Test-Task\obj\Debug\net8.0\Veeam-Test-Task.csproj.CoreCompileInputs.cache
+E:\Users\David\source\repos\Veeam-Test-Task\obj\Debug\net8.0\Veeam-Test-Task.sourcelink.json
+E:\Users\David\source\repos\Veeam-Test-Task\obj\Debug\net8.0\Veeam-Test-Task.dll
+E:\Users\David\source\repos\Veeam-Test-Task\obj\Debug\net8.0\refint\Veeam-Test-Task.dll
+E:\Users\David\source\repos\Veeam-Test-Task\obj\Debug\net8.0\Veeam-Test-Task.pdb
+E:\Users\David\source\repos\Veeam-Test-Task\obj\Debug\net8.0\Veeam-Test-Task.genruntimeconfig.cache
+E:\Users\David\source\repos\Veeam-Test-Task\obj\Debug\net8.0\ref\Veeam-Test-Task.dll

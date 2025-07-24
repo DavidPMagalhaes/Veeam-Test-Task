@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Veeam-Test-Task": {
+      "commandName": "Project",
+      "commandLineArgs": "\"E:\\Users\\David\\Desktop\\TestSource\" \"E:\\Users\\David\\Desktop\\TestTarget\" 30 \"E:\\Users\\David\\Desktop\\SyncLog.txt\""
+    }
+  }
+}
