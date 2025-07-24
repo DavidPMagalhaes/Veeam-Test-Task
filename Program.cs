@@ -26,7 +26,7 @@ class FolderSync
             Directory.CreateDirectory(logDir);
         }
 
-        // Write to log that the program has started and log the arguments
+        // Write to log that the program has started
         LogMessage(logPath, "Program started.");
 
         string sourcePath = args[0];        
@@ -53,7 +53,48 @@ class FolderSync
 
         int intervalSec = int.Parse(args[2]);       
         FileInfo[] sourceFiles = sourceDir.GetFiles("*", SearchOption.AllDirectories);
+        //Log soure files - Delete if unnecessary since it parses every file in source directory
+        foreach (FileInfo file in sourceFiles)
+        {
+            LogMessage(logPath, $"Source file: {file.FullName} | Last modified: {file.LastWriteTime}");
+        }
         FileInfo[] targetFiles = targetDir.GetFiles("*", SearchOption.AllDirectories);
+        //Log target files - Delete if unnecessary, same reason
+        foreach (FileInfo file in targetFiles)
+        {
+            LogMessage(logPath, $"Target file: {file.FullName} | Last modified: {file.LastWriteTime}");
+        }
+        // Synch source into target
+        foreach (FileInfo sourceFile in sourceFiles)
+        {
+            string relativePath = Path.GetRelativePath(sourceDir.FullName, sourceFile.FullName);
+            string targetFilePath = Path.Combine(targetDir.FullName, relativePath);
+            FileInfo targetFile = new FileInfo(targetFilePath);
+            string targetFileDir = Path.GetDirectoryName(targetFilePath);
+            if (!Directory.Exists(targetFileDir))
+            {
+                Directory.CreateDirectory(targetFileDir);
+                LogMessage(logPath, $"Created directory: {targetFileDir}");
+            }
+            if (targetFile.Exists)
+            {
+                //Check if source file newer than target
+                if (sourceFile.LastWriteTime > targetFile.LastWriteTime)
+                {
+                    sourceFile.CopyTo(targetFile.FullName, true);
+                    LogMessage(logPath, $"Updated: {targetFile.FullName} (newer version copied)");
+                }
+                else
+                {
+                    LogMessage(logPath, $"Skipped: {targetFile.FullName} (target is up-to-date)");
+                }
+            }
+            else
+            {
+                sourceFile.CopyTo(targetFile.FullName);
+                LogMessage(logPath, $"Copied: {targetFile.FullName} (new file)");
+            }
+        }
         return;
     }
 }
