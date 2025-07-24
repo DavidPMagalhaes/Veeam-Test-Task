@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Threading;
-class FolderSync 
+class FolderSync
 {
     static void LogMessage(string logPath, string message)
     {
@@ -12,7 +12,7 @@ class FolderSync
         }
         Console.WriteLine(time);
     }
-    static void Main(string[] args) 
+    static void Main(string[] args)
     {
         if (args.Length != 4)
         {
@@ -31,23 +31,23 @@ class FolderSync
         // Write to log that the program has started
         LogMessage(logPath, "Program started.");
 
-        string sourcePath = args[0];        
-        if (!Directory.Exists(sourcePath))         
-        {        
-            Console.WriteLine($"Source directory '{sourcePath}' does not exist.");            
-            return;            
-        }        
+        string sourcePath = args[0];
+        if (!Directory.Exists(sourcePath))
+        {
+            Console.WriteLine($"Source directory '{sourcePath}' does not exist.");
+            return;
+        }
         DirectoryInfo sourceDir = new DirectoryInfo(sourcePath);
 
         //Write to log that the source directory exists and log the path
         LogMessage(logPath, $"Source directory exists: {sourcePath}");
 
-        string targetPath = args[1];        
-        if (!Directory.Exists(targetPath))         
-        {        
-            Console.WriteLine($"Target directory '{targetPath}' does not exist.");            
-            return;            
-        }        
+        string targetPath = args[1];
+        if (!Directory.Exists(targetPath))
+        {
+            Console.WriteLine($"Target directory '{targetPath}' does not exist.");
+            return;
+        }
         DirectoryInfo targetDir = new DirectoryInfo(targetPath);
 
         //Write to log that the target directory exists and log the path
@@ -102,6 +102,18 @@ class FolderSync
             }
             LogMessage(logPath, $"Synchronization complete. Repeating in {intervalSec} seconds");
             Thread.Sleep(intervalSec * 1000); //Cause sleep expects milliseconds
+            // Check for files in target folder that arent in the source fplder
+            foreach (FileInfo targetFile in targetFiles)
+            {
+                string relativePath = Path.GetRelativePath(targetDir.FullName, targetFile.FullName);
+                string sourceFilePath = Path.Combine(sourceDir.FullName, relativePath);
+                if (!File.Exists(sourceFilePath))
+                {
+                    targetFile.Delete();
+                    LogMessage(logPath, $"Deleted: {targetFile.FullName} (no longer exists in source)");
+                }
+            }
         }
+
     }
 }
